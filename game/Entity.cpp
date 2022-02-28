@@ -3629,6 +3629,16 @@ inflictor, attacker, dir, and point can be NULL for environmental effects
 
 ============
 */
+
+//levelSystem *levelSystem::instance =nullptr;
+//
+//levelSystem *levelSystem::GetInstance() {
+//	if (instance == nullptr) {
+//		instance = new levelSystem();
+//	}
+//	return instance;
+//}
+
 void idEntity::Damage( idEntity *inflictor, idEntity *attacker, const idVec3 &dir, 
 					  const char *damageDefName, const float damageScale, const int location ) {
 	if ( forwardDamageEnt.IsValid() ) {
@@ -3666,7 +3676,12 @@ void idEntity::Damage( idEntity *inflictor, idEntity *attacker, const idVec3 &di
 			if ( health < -999 ) {
 				health = -999;
 			}
+			//Mod --
+			/*const int xp = 10;
+			levelSystem* lv = lv->GetInstance();
+			lv->increaseXP(xp);*/
 
+			//MOD END --
 			Killed( inflictor, attacker, damage, dir, location );
 		} else {
 			Pain( inflictor, attacker, damage, dir, location );

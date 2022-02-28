@@ -408,6 +408,7 @@ void GiveStuffToPlayer( idPlayer* player, const char* name, const char* value )
 	int			i;
 	bool		give_all;
 //	idPlayer* player = gameLocal.GetLocalPlayer();
+	gameLocal.Printf("name: %s , value: %s\n", name, value);
 
 	if( !player || !name )	{
 		return;
@@ -3046,6 +3047,53 @@ Let the system know about all of our commands
 so it can perform tab completion
 =================
 */
+
+//MOD
+
+//Classes
+
+void Assassin(idPlayer* player) {
+	gameLocal.Printf("choose class Assassin");
+	
+	GiveStuffToPlayer(player, "weapon_Railgun", "");
+}
+
+void Mechanic(idPlayer* player) {
+	gameLocal.Printf("choose class Mechanic");
+}
+
+void Mage(idPlayer* player) {
+	gameLocal.Printf("choose class Mage");
+}
+
+
+//Redirect
+void Cmd_Class_Select(const idCmdArgs& args) {
+
+	if (args.Argc() <= 1) {
+		gameLocal.Printf("usage: class <class>\n");
+		gameLocal.Printf("\ttry 'assassin', 'mechanic', 'mage'\n");
+		return;
+	}
+
+	idPlayer* player;
+
+	player = gameLocal.GetLocalPlayer();
+
+	//assassin
+	if (!idStr::Icmp(args.Argv(1), "assassin")) Assassin(player);
+	//mechanic
+	else if (!idStr::Icmp(args.Argv(1), "mechanic")) Mechanic(player);
+	//mage
+	else if (!idStr::Icmp(args.Argv(1), "mage")) Mage(player);
+	else {
+		gameLocal.Printf("Invalid Class <%s>", args.Argv(1));
+	}
+}
+
+//MOD End --
+
+
 void idGameLocal::InitConsoleCommands( void ) {
 // RAVEN BEGIN
 // jscott: typeinfo gone - didn't work, it was unfinished
@@ -3233,6 +3281,9 @@ void idGameLocal::InitConsoleCommands( void ) {
 	cmdSystem->AddCommand( "buy",					Cmd_BuyItem_f,				CMD_FL_GAME,				"Buy an item (if in a buy zone and the game type supports it)" );
 // RITUAL END
 
+// MOD START
+	cmdSystem->AddCommand("class", Cmd_Class_Select, CMD_FL_GAME | CMD_FL_CHEAT, "test if you can bind custom commands");
+// MOD END
 }
 
 /*

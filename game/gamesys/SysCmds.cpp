@@ -3053,17 +3053,17 @@ so it can perform tab completion
 //Classes
 
 void Assassin(idPlayer* player) {
-	gameLocal.Printf("choose class Assassin");
+	gameLocal.Printf("choose class Assassin\n");
 	
 	GiveStuffToPlayer(player, "weapon_Railgun", "");
 }
 
 void Mechanic(idPlayer* player) {
-	gameLocal.Printf("choose class Mechanic");
+	gameLocal.Printf("choose class Mechanic\n");
 }
 
 void Mage(idPlayer* player) {
-	gameLocal.Printf("choose class Mage");
+	gameLocal.Printf("choose class Mage\n");
 }
 
 

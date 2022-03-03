@@ -3052,19 +3052,7 @@ so it can perform tab completion
 
 //Classes
 
-void Assassin(idPlayer* player) {
-	gameLocal.Printf("choose class Assassin\n");
-	
-	GiveStuffToPlayer(player, "weapon_Railgun", "");
-}
 
-void Mechanic(idPlayer* player) {
-	gameLocal.Printf("choose class Mechanic\n");
-}
-
-void Mage(idPlayer* player) {
-	gameLocal.Printf("choose class Mage\n");
-}
 
 
 //Redirect
@@ -3072,7 +3060,7 @@ void Cmd_Class_Select(const idCmdArgs& args) {
 
 	if (args.Argc() <= 1) {
 		gameLocal.Printf("usage: class <class>\n");
-		gameLocal.Printf("\ttry 'assassin', 'mechanic', 'mage'\n");
+		gameLocal.Printf("try 'assassin', 'mechanic', 'mage'\n");
 		return;
 	}
 
@@ -3081,19 +3069,35 @@ void Cmd_Class_Select(const idCmdArgs& args) {
 	player = gameLocal.GetLocalPlayer();
 
 	//assassin
-	if (!idStr::Icmp(args.Argv(1), "assassin")) Assassin(player);
+	if (!idStr::Icmp(args.Argv(1), "assassin")) player->AssassinClass();
 	//mechanic
-	else if (!idStr::Icmp(args.Argv(1), "mechanic")) Mechanic(player);
+	else if (!idStr::Icmp(args.Argv(1), "mechanic")) player->MechanicClass();
 	//mage
-	else if (!idStr::Icmp(args.Argv(1), "mage")) Mage(player);
+	else if (!idStr::Icmp(args.Argv(1), "mage")) player->MageClass();
 	else {
 		gameLocal.Printf("Invalid Class <%s>", args.Argv(1));
 	}
 }
 
-//MOD End --
+void Cmd_DisplayStats(const idCmdArgs& args) {
+	idPlayer* player = gameLocal.GetLocalPlayer();
+	player->GetStats();
+}
 
+void Cmd_AddXP(const idCmdArgs& args) {
+	idPlayer* player = gameLocal.GetLocalPlayer();
+	player->increaseXP();
+}
 
+void Cmd_Active1(const idCmdArgs& args) {
+	idPlayer* player = gameLocal.GetLocalPlayer();
+	player->ActiveAbility1();
+}
+
+void Cmd_Active2(const idCmdArgs& args) {
+	idPlayer* player = gameLocal.GetLocalPlayer();
+	player->ActiveAbility2();
+}
 void idGameLocal::InitConsoleCommands( void ) {
 // RAVEN BEGIN
 // jscott: typeinfo gone - didn't work, it was unfinished
@@ -3283,6 +3287,10 @@ void idGameLocal::InitConsoleCommands( void ) {
 
 // MOD START
 	cmdSystem->AddCommand("class", Cmd_Class_Select, CMD_FL_GAME | CMD_FL_CHEAT, "test if you can bind custom commands");
+	cmdSystem->AddCommand("stats", Cmd_DisplayStats , CMD_FL_GAME | CMD_FL_CHEAT, "test if you can bind custom commands");
+	cmdSystem->AddCommand("xp", Cmd_AddXP, CMD_FL_GAME | CMD_FL_CHEAT, "test if you can bind custom commands");
+	cmdSystem->AddCommand("active1", Cmd_Active1, CMD_FL_GAME | CMD_FL_CHEAT, "test if you can bind custom commands");
+	cmdSystem->AddCommand("active2", Cmd_Active2, CMD_FL_GAME | CMD_FL_CHEAT, "test if you can bind custom commands");
 // MOD END
 }
 

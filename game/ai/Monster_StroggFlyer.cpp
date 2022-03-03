@@ -121,6 +121,8 @@ void rvMonsterStroggFlyer::OnUpdatePlayback ( const rvDeclPlaybackData& pbd ) {
 	}
 
 	switch ( impulse ) {
+		case 1:
+			gameLocal.Printf("\nit works\n");
 		case 40:
 			aifl.disableAttacks = true;
 			break;

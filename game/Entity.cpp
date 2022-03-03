@@ -3630,17 +3630,78 @@ inflictor, attacker, dir, and point can be NULL for environmental effects
 ============
 */
 
-//levelSystem *levelSystem::instance =nullptr;
+//=======================
+//Level System
+//=======================
+//class LevelSystem {
 //
-//levelSystem *levelSystem::GetInstance() {
-//	if (instance == nullptr) {
-//		instance = new levelSystem();
+//	//Singleton Start
+//public:
+//	static LevelSystem* getInstance();
+//
+//	void resetValue(int val) {
+//		value_ = val;
+//		currentXP = 0;
+//		totalXP = 10;
+//		perks = 0;
+//		level = 1;
 //	}
-//	return instance;
+//	int getValue() { return(value_); }
+//
+//protected:
+//	int value_;
+//
+//private:
+//	static LevelSystem* inst_; //The one, single instance
+//	LevelSystem() : value_(0) {} //private constructor
+//	LevelSystem(const LevelSystem&);
+//	LevelSystem& operator = (const LevelSystem&);
+//
+//
+//	//Singleton End
+//
+//protected:
+//	float currentXP;
+//	float totalXP;
+//	const float inflation = 1.25f;
+//	const float enemyKillXp = 10.0f;
+//	int perks;
+//	int level;
+//
+//public:
+//	void increaseXP() {
+//		currentXP += enemyKillXp;
+//		gameLocal.Printf("+10XP\n");
+//		while (currentXP >= totalXP) {
+//			totalXP = round(totalXP *= inflation);
+//			currentXP -= totalXP;
+//			perks++;
+//			gameLocal.Printf("Level UP: +1 Perk Point!\n");
+//		}
+//		gameLocal.Printf("Level: %d%\n", level);
+//		gameLocal.Printf("XP:%d% / %d%\n", round(currentXP), totalXP);
+//		gameLocal.Printf("Perks:%d%\n", perks);
+//		gameLocal.Printf("-------------\n");
+//	}
+//};
+//MOD End --
+
+//Singleton restart
+//LevelSystem* LevelSystem::inst_ = NULL;
+//
+//LevelSystem* LevelSystem::getInstance() {
+//	if (inst_ == NULL) {
+//		inst_ = new LevelSystem();
+//	}
+//	return(inst_);
 //}
+
+//Singleton reend
 
 void idEntity::Damage( idEntity *inflictor, idEntity *attacker, const idVec3 &dir, 
 					  const char *damageDefName, const float damageScale, const int location ) {
+	idPlayer* player = NULL;
+
 	if ( forwardDamageEnt.IsValid() ) {
 		forwardDamageEnt->Damage( inflictor, attacker, dir, damageDefName, damageScale, location );
 		return;
@@ -3671,17 +3732,21 @@ void idEntity::Damage( idEntity *inflictor, idEntity *attacker, const idVec3 &di
 		// do the damage
 		//jshepard: this is kinda important, no?
 		health -= damage;
-
 		if ( health <= 0 ) {
 			if ( health < -999 ) {
 				health = -999;
 			}
-			//Mod --
-			/*const int xp = 10;
-			levelSystem* lv = lv->GetInstance();
-			lv->increaseXP(xp);*/
-
-			//MOD END --
+			
+			//MOD
+			if (attacker == gameLocal.GetLocalPlayer()&&inflictor->CanTakeDamage()) {
+				gameLocal.Printf("-------------------\n");
+				gameLocal.Printf("Attacker is player\n");
+				if (player == NULL) { //here to make sure this only occurs once per enemy
+					player = (idPlayer*)attacker;
+					player->increaseXP();
+				}
+			}
+			
 			Killed( inflictor, attacker, damage, dir, location );
 		} else {
 			Pain( inflictor, attacker, damage, dir, location );
@@ -3806,6 +3871,8 @@ This is a virtual function that subclasses are expected to implement.
 ============
 */
 void idEntity::Killed( idEntity *inflictor, idEntity *attacker, int damage, const idVec3 &dir, int location ) {
+	
+	//END MOD
 }
 
 /***********************************************************************

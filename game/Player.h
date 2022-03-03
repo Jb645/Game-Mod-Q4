@@ -268,6 +268,139 @@ public:
 };
 
 class idPlayer : public idActor {
+	//MOD -- Level System
+public:
+	int killCount;
+protected:
+	float currentXP;
+	float totalXP;
+	float percentage;
+	const float inflation = 1.25f;
+	const float enemyKillXp = 10.0f;
+	int perks;
+	int level;
+	idEntity* lastenemy;//testing this
+	enum Classes{None,Assassin, Mechanic, Mage};
+	Classes currentClass = None;
+	char* className = "None";
+public:
+
+	void increaseXP() {
+		/*if (enemy== lastenemy) return;
+		else lastenemy = enemy;*/
+		killCount++;
+		currentXP += enemyKillXp;
+		while (currentXP > totalXP) {
+			currentXP -= totalXP;
+			totalXP *=inflation;
+			perks++;
+			level++;
+			gameLocal.Printf("Level UP! +1 Perk Point!\n");
+		}
+		percentage = currentXP / totalXP;
+		this->inventory.armor = round(percentage * 100);
+		gameLocal.Printf("Level: %d%\n", level);
+		gameLocal.Printf("Class: %s%\n",className);
+		gameLocal.Printf("XP: %f% : %f%\n", currentXP, totalXP);
+		gameLocal.Printf("Perks:%d%\n", perks);
+		gameLocal.Printf("-------------\n");
+	}
+
+	void GetStats() {
+		gameLocal.Printf("Level: %d%\n", level);
+		gameLocal.Printf("Class: %s%\n", className);
+		gameLocal.Printf("XP: %f% : %f%\n", currentXP, totalXP);
+		gameLocal.Printf("Perks:%d%\n", perks);
+		gameLocal.Printf("Kill Count:%d%\n", killCount);
+	}
+
+	//Classes
+	void AssassinClass() {
+		gameLocal.Printf("choosen class Assassin\n");
+		className = "Assassin";
+		currentClass = Assassin;
+		GiveStuffToPlayer(this, "weapon_Railgun", "");
+		gameLocal.Printf("----------------------\n");
+
+	}
+
+	void MechanicClass() {
+		gameLocal.Printf("choosen class Mechanic\n");
+		className = "Mechanic";
+		currentClass = Mechanic;
+		GiveStuffToPlayer(this, "weapon_rocketlauncher", "");
+		gameLocal.Printf("----------------------\n");
+	}
+
+	void MageClass() {
+		gameLocal.Printf("choosen class Mage\n");
+		className = "Mage";
+		currentClass = Mage;
+		GiveStuffToPlayer(this, "weapon_lightningGun", "");
+		gameLocal.Printf("----------------------\n");
+	}
+
+	//Perks
+	void UsePerk() {
+		switch (currentClass)
+		{
+		case None:
+			
+			break;
+		case Assassin:
+			
+			break;
+		case Mechanic:
+			
+			break;
+		case Mage:
+			
+			break;
+		default:
+			break;
+		}
+	}
+
+	//Active Abilities
+	void ActiveAbility1() {
+		switch (currentClass)
+		{
+		case idPlayer::None:
+			gameLocal.Printf("Ability Unabailable\n");
+			break;
+		case idPlayer::Assassin:
+			gameLocal.Printf("Invisibility\n");
+			break;
+		case idPlayer::Mechanic:
+			gameLocal.Printf("Heal\n");
+			break;
+		case idPlayer::Mage:
+			gameLocal.Printf("Movement Speed Up\n");
+			break;
+		default:
+			break;
+		}
+	}
+	void ActiveAbility2() {
+		switch (currentClass)
+		{
+		case idPlayer::None:
+			gameLocal.Printf("Ability Unabailable\n");
+			break;
+		case idPlayer::Assassin:
+			gameLocal.Printf("sword\n");
+			break;
+		case idPlayer::Mechanic:
+			gameLocal.Printf("Ammo\n");
+			break;
+		case idPlayer::Mage:
+			gameLocal.Printf("Damage Up\n");
+			break;
+		default:
+			break;
+		}
+	}
+	//MOD END
 public:
 
  	enum {

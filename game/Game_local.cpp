@@ -8372,7 +8372,7 @@ idGameLocal::GetDemoHud
 */
 idUserInterface	*idGameLocal::GetDemoHud( void ) {
 	if ( !demo_hud ) {
-		demo_hud = uiManager->FindGui( "guis/hud.gui", true, false, true );
+		demo_hud = uiManager->FindGui( "guis/hud.gui", true, true, true );//false
 		assert( demo_hud );
 	}
 	return demo_hud;

@@ -1077,6 +1077,13 @@ idPlayer::idPlayer
 ==============
 */
 idPlayer::idPlayer() {
+	//MOD initialization
+	killCount = 0;
+	totalXP = 10;
+	currentXP = 0;
+	perks = 0;
+	level = 0;
+	//END MOD
 	memset( &usercmd, 0, sizeof( usercmd ) );
 
 	alreadyDidTeamAnnouncerSound = false;
@@ -10182,7 +10189,7 @@ void idPlayer::Damage( idEntity *inflictor, idEntity *attacker, const idVec3 &di
 	}
 
 	// give feedback on the player view and audibly when armor is helping
-	inventory.armor -= armorSave;
+	//inventory.armor -= armorSave;
 
 	if ( g_debugDamage.GetInteger() ) {
 		gameLocal.Printf( "client:%i health:%i damage:%i armor:%i\n", 

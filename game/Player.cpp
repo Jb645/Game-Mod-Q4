@@ -18,6 +18,8 @@
 #include "Healing_Station.h"
 #include "ai/AI_Medic.h"
 
+
+
 // RAVEN BEGIN
 // nrausch: support for turning the weapon change ui on and off
 #ifdef _XENON
@@ -27,9 +29,6 @@
 #include "../sys/xenon/xen_input.h"
 #endif
 // RAVEN END
-
-
-
 
 idCVar net_predictionErrorDecay( "net_predictionErrorDecay", "112", CVAR_FLOAT | CVAR_GAME | CVAR_NOCHEAT, "time in milliseconds it takes to fade away prediction errors", 0.0f, 200.0f );
 idCVar net_showPredictionError( "net_showPredictionError", "-1", CVAR_INTEGER | CVAR_GAME | CVAR_NOCHEAT, "show prediction errors for the given client", -1, MAX_CLIENTS );
@@ -1083,6 +1082,10 @@ idPlayer::idPlayer() {
 	currentXP = 0;
 	perks = 0;
 	level = 0;
+	*time = 0;
+	*time2 = 0;
+
+
 	//END MOD
 	memset( &usercmd, 0, sizeof( usercmd ) );
 

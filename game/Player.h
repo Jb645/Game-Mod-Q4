@@ -3,9 +3,11 @@
 //
 // MERGE_DATE 07/07/2004
 
+
+
+
 #ifndef __GAME_PLAYER_H__
 #define __GAME_PLAYER_H__
-
 /*
 ===============================================================================
 
@@ -280,9 +282,32 @@ protected:
 	int perks;
 	int level;
 	idEntity* lastenemy;//testing this
+	//classes
 	enum Classes{None,Assassin, Mechanic, Mage};
 	Classes currentClass = None;
 	char* className = "None";
+	//player weapon upgrades
+	enum WeaponsList {
+		Blaster,
+		DarkMatterGun,
+		Gauntlet,
+		GrenadeLauncher,
+		HyperBlaster,
+		LightningGun,
+		MachineGun,
+		NailGun,
+		NapalmLauncher,
+		Railgun,
+		RocketLaucher,
+		Shotgun
+	};
+	//timelines
+	const int cooldown = 10000; //10 seconds
+	const int activeTime = 5000; //5 seconds
+	int* time;
+	int* time2;
+	bool canUseActive1;
+	bool canUseActive2;
 public:
 
 	void increaseXP() {
@@ -342,46 +367,62 @@ public:
 
 	//Perks
 	void UsePerk() {
-		switch (currentClass)
-		{
-		case None:
-			
-			break;
-		case Assassin:
-			
-			break;
-		case Mechanic:
-			
-			break;
-		case Mage:
-			
-			break;
-		default:
-			break;
+		
+	}
+	bool CanUseActiveCheck(int* time) {
+		if (*time > gameLocal.time) {
+			gameLocal.Printf("-----------------------\n");
+			gameLocal.Printf("Ability Under Cooldown\n");
+			gameLocal.Printf("Cooldown(%d%): %d%/%d%\n", cooldown, *time, gameLocal.time);
+			gameLocal.Printf("-----------------------\n");
+			return false;
 		}
+		else {
+			gameLocal.Printf("-----------------------\n");
+			*time = gameLocal.time + cooldown;
+			gameLocal.Printf("Cooldown(%d%): %d%/%d%\n", cooldown, *time, gameLocal.time);
+			gameLocal.Printf("-----------------------\n");
+			return true;
+		}
+		
 	}
 
+	
 	//Active Abilities
 	void ActiveAbility1() {
+		//canUseActive1 = () ? true : false;
+		canUseActive1 = CanUseActiveCheck(time);
+
+		if(canUseActive1)
 		switch (currentClass)
 		{
 		case idPlayer::None:
 			gameLocal.Printf("Ability Unabailable\n");
 			break;
 		case idPlayer::Assassin:
-			gameLocal.Printf("Invisibility\n");
+			gameLocal.Printf("Invisibility ON\n");
+			this->GivePowerUp(POWERUP_REGENERATION, activeTime, false);
+			fl.notarget = true; //become invisible	
 			break;
 		case idPlayer::Mechanic:
 			gameLocal.Printf("Heal\n");
+			this->GivePowerUp(POWERUP_REGENERATION, activeTime, false);
+			health += 10;
+			if (health > inventory.maxHealth) health = inventory.maxHealth;
 			break;
 		case idPlayer::Mage:
 			gameLocal.Printf("Movement Speed Up\n");
+			//physicsObj.SetSpeed(pm_speed.GetFloat()*10, pm_crouchspeed.GetFloat()*10); //Original 160, 80
+			this->GivePowerUp(POWERUP_HASTE, activeTime, false);
 			break;
 		default:
 			break;
 		}
 	}
 	void ActiveAbility2() {
+		canUseActive2 = CanUseActiveCheck(time2);
+
+
 		switch (currentClass)
 		{
 		case idPlayer::None:

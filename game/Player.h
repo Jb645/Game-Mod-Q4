@@ -301,13 +301,15 @@ protected:
 		RocketLaucher,
 		Shotgun
 	};
+	
 	//timelines
 	const int cooldown = 10000; //10 seconds
 	const int activeTime = 5000; //5 seconds
 	int* time;
 	int* time2;
-	bool canUseActive1;
-	bool canUseActive2;
+	bool canUseActive1,isActive1OnCooldown;
+	bool canUseActive2,isActive2OnCooldown;
+	int currentPowerUp1, currentPowerUp2;
 public:
 
 	void increaseXP() {
@@ -393,7 +395,7 @@ public:
 		//canUseActive1 = () ? true : false;
 		canUseActive1 = CanUseActiveCheck(time);
 
-		if(canUseActive1)
+		if(canUseActive1){
 		switch (currentClass)
 		{
 		case idPlayer::None:
@@ -401,22 +403,34 @@ public:
 			break;
 		case idPlayer::Assassin:
 			gameLocal.Printf("Invisibility ON\n");
-			this->GivePowerUp(POWERUP_REGENERATION, activeTime, false);
-			fl.notarget = true; //become invisible	
+			currentPowerUp1 = POWERUP_INVISIBILITY;
+			GivePowerUp(currentPowerUp1, activeTime, true);
+			fl.notarget = true;
 			break;
 		case idPlayer::Mechanic:
 			gameLocal.Printf("Heal\n");
-			this->GivePowerUp(POWERUP_REGENERATION, activeTime, false);
+			currentPowerUp1 = POWERUP_REGENERATION;
+			this->GivePowerUp(currentPowerUp1, activeTime, false);
 			health += 10;
 			if (health > inventory.maxHealth) health = inventory.maxHealth;
 			break;
 		case idPlayer::Mage:
 			gameLocal.Printf("Movement Speed Up\n");
-			//physicsObj.SetSpeed(pm_speed.GetFloat()*10, pm_crouchspeed.GetFloat()*10); //Original 160, 80
+			currentPowerUp1 = POWERUP_HASTE;
 			this->GivePowerUp(POWERUP_HASTE, activeTime, false);
 			break;
 		default:
 			break;
+		}
+		}
+		else {
+			if (gameLocal.time > (*time - activeTime)) {
+				ClearPowerup(currentPowerUp1);
+				if(currentPowerUp1==POWERUP_INVISIBILITY) fl.notarget = false;
+				gameLocal.Printf("PowerUp OFF\n");
+				gameLocal.Printf("-------------------\n");
+				return;
+			}
 		}
 	}
 	void ActiveAbility2() {

@@ -26,3 +26,5 @@ The upgrades are as follow:
 you can write 'buy <upgradeName>' to buy your upgrade
 you can 'stats' to see your stats
 you can write 'weaponstats' to see all your weapon stats
+
+*note - this mod can be accesed on the mod branch*

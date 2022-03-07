@@ -436,23 +436,31 @@ public:
 	void ActiveAbility2() {
 		canUseActive2 = CanUseActiveCheck(time2);
 
-
-		switch (currentClass)
-		{
-		case idPlayer::None:
-			gameLocal.Printf("Ability Unabailable\n");
-			break;
-		case idPlayer::Assassin:
-			gameLocal.Printf("sword\n");
-			break;
-		case idPlayer::Mechanic:
-			gameLocal.Printf("Ammo\n");
-			break;
-		case idPlayer::Mage:
-			gameLocal.Printf("Damage Up\n");
-			break;
-		default:
-			break;
+		if(canUseActive2)
+			switch (currentClass)
+			{
+			case idPlayer::None:
+				gameLocal.Printf("Ability Unabailable\n");
+				break;
+			case idPlayer::Assassin:
+				gameLocal.Printf("sword\n");
+				break;
+			case idPlayer::Mechanic:
+				gameLocal.Printf("Ammo\n");
+				break;
+			case idPlayer::Mage:
+				gameLocal.Printf("Damage Up\n");
+				break;
+			default:
+				break;
+			}
+		else {
+			if (gameLocal.time > (*time - activeTime)) {
+				ClearPowerup(currentPowerUp1);
+				gameLocal.Printf("PowerUp OFF\n");
+				gameLocal.Printf("-------------------\n");
+				return;
+			}
 		}
 	}
 	//MOD END

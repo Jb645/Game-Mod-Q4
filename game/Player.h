@@ -443,7 +443,7 @@ public:
 				gameLocal.Printf("Ability Unabailable\n");
 				break;
 			case idPlayer::Assassin:
-				gameLocal.Printf("sword\n");
+				gameLocal.Printf("Alter Mode\n");
 				break;
 			case idPlayer::Mechanic:
 				gameLocal.Printf("Ammo\n");

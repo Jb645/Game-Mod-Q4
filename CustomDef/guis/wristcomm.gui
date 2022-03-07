@@ -1224,10 +1224,10 @@ windowDef Desktop
 	}
 	windowDef HelpMenu_weapons
 	{
-		rect	486,108,137,213
+		rect	486,108,137,259
 		visible	0
 		forecolor	1,1,1,1
-		text	"Weapons:\ngrenadelauncher\nhyperblaster\nlightninggun\nlightninggun\nnailgun\nrailgun\nrocketlauncher\nshotgun"
+		text	"Weapons:\ngrenadelauncher\nhyperblaster\nlightninggun\nlightninggun\nnailgun\nrailgun\nrocketlauncher\nshotgun\n\n Active Abilities:\n Active1-<q>\nActive2-<e>"
 		textscale	0.3
 		textalignx	8
 		textaligny	8

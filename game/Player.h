@@ -444,19 +444,25 @@ public:
 				break;
 			case idPlayer::Assassin:
 				gameLocal.Printf("Alter Mode\n");
+				currentPowerUp2 = POWERUP_SCOUT;
+				GivePowerUp(currentPowerUp2, activeTime, true);
 				break;
 			case idPlayer::Mechanic:
 				gameLocal.Printf("Ammo\n");
+				currentPowerUp2 = POWERUP_AMMOREGEN;
+				GivePowerUp(currentPowerUp2, activeTime, true);
 				break;
 			case idPlayer::Mage:
 				gameLocal.Printf("Damage Up\n");
+				currentPowerUp2 = POWERUP_QUADDAMAGE;
+				GivePowerUp(currentPowerUp2, activeTime, true);
 				break;
 			default:
 				break;
 			}
 		else {
-			if (gameLocal.time > (*time - activeTime)) {
-				ClearPowerup(currentPowerUp1);
+			if (gameLocal.time > (*time2 - activeTime)) {
+				ClearPowerup(currentPowerUp2);
 				gameLocal.Printf("PowerUp OFF\n");
 				gameLocal.Printf("-------------------\n");
 				return;

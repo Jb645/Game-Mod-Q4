@@ -57,6 +57,7 @@ windowDef Desktop
 		set "HelpMenu_Commands::visible" "1";
 		set "HelpMenu_Extra::visible" "1";
 		set "HelpMenu_weapons::visible" "1";
+		set "HelpMenu_Abilities::visible" "1";
 		if ( "gui::objective1" == 1 && "gui::objective2" == 1 && "gui::objective3" == 1) {
 			stoptransitions "anim_obj1_in" ;
 			stoptransitions "anim_obj2_in" ;
@@ -161,6 +162,7 @@ windowDef Desktop
 		set "HelpMenu_Commands::visible" "0";
 		set "HelpMenu_Extra::visible" "0";
 		set "HelpMenu_weapons::visible" "0";
+		set "HelpMenu_Abilities::visible" "1";
 	}
 
 	onEvent {
@@ -1229,6 +1231,17 @@ windowDef Desktop
 		forecolor	1,1,1,1
 		text	"Weapons:\ngrenadelauncher\nhyperblaster\nlightninggun\nlightninggun\nnailgun\nrailgun\nrocketlauncher\nshotgun\n\n Active Abilities:\n Active1-<q>\nActive2-<e>"
 		textscale	0.3
+		textalignx	8
+		textaligny	8
+	}
+	windowDef HelpMenu_Abilities
+	{
+		rect	15,369,446,100
+		visible	0
+		forecolor	1,1,1,1
+		text	"Abilities:-----<e><q><passive>\nAssassin:-----<Invisible><Alter Mode><Railgun>\nMechanic:-----<Heal><Ammo><RocketLauncher>\nMage:-----<SpeedUp><DamageUp><LightningGun>"
+		textscale	0.3
+		backcolor	0.498,0.498,1,0.274
 		textalignx	8
 		textaligny	8
 	}

@@ -44,7 +44,7 @@ echo Done!
 echo Move GUI's, Def's, Config
 Set SourceModGUIPathDesktop="D:\GitHub\IT266-GameMod\Game-Mod-Q4\CustomDef"
 Set TargetCustomDefPathDesktop="D:\SteamLibrary\steamapps\common\Quake 4\mod"
-Set SourceModGUIPathLaptop="C:\Users\josue\OneDrive\Documents\Coding\GitHub\IT266-GameMod\Game-Mod-Q4\CustomDef"
+Set SourceModGUIPathLaptop="C:\Users\josue\OneDrive\Documents\Coding\GitHub\Game-Mod-Q4\CustomDef"
 Set TargetCustomDefPathLaptop="C:\Program Files (x86)\Steam\steamapps\common\Quake 4\mod"
 
 if exist %TargetCustomDefPathDesktop% (

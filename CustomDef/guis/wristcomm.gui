@@ -162,7 +162,7 @@ windowDef Desktop
 		set "HelpMenu_Commands::visible" "0";
 		set "HelpMenu_Extra::visible" "0";
 		set "HelpMenu_weapons::visible" "0";
-		set "HelpMenu_Abilities::visible" "1";
+		set "HelpMenu_Abilities::visible" "0";
 	}
 
 	onEvent {
@@ -1204,7 +1204,7 @@ windowDef Desktop
 	}
 	windowDef HelpMenu_Commands
 	{
-		rect	22,16,577,73
+		rect	10,12,619,73
 		visible	0
 		forecolor	1,1,1,1
 		text	"Console Mod Commands:\nChoose Class: class <className>\nBuy Weapon Upgrade:buy <<weapon_<weaponName>> <WeaponUpgrade>\n"
@@ -1215,7 +1215,7 @@ windowDef Desktop
 	}
 	windowDef HelpMenu_Extra
 	{
-		rect	378,105,251,288
+		rect	377,97,251,264
 		visible	0
 		forecolor	1,1,1,1
 		text	"Classes:\nAssassin\nMechanic\nMage\n\nUpgrades:\nReload\nSpreadPlus\nspreadMinus\ndamage\ncritChance\ncritDamage"
@@ -1226,7 +1226,7 @@ windowDef Desktop
 	}
 	windowDef HelpMenu_weapons
 	{
-		rect	486,108,137,259
+		rect	485,100,137,259
 		visible	0
 		forecolor	1,1,1,1
 		text	"Weapons:\ngrenadelauncher\nhyperblaster\nlightninggun\nlightninggun\nnailgun\nrailgun\nrocketlauncher\nshotgun\n\n Active Abilities:\n Active1-<q>\nActive2-<e>"
@@ -1236,7 +1236,7 @@ windowDef Desktop
 	}
 	windowDef HelpMenu_Abilities
 	{
-		rect	15,369,446,100
+		rect	9,375,618,94
 		visible	0
 		forecolor	1,1,1,1
 		text	"Abilities:-----<e><q><passive>\nAssassin:-----<Invisible><Alter Mode><Railgun>\nMechanic:-----<Heal><Ammo><RocketLauncher>\nMage:-----<SpeedUp><DamageUp><LightningGun>"

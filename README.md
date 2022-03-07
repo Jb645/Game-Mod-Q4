@@ -6,7 +6,7 @@ All of these commands are done on the console of quake 4.
 I added A level up system, a class system with 3 classes (assassin, mechanic, and mage.)
 Each of these have 3 abilities (2 active, 1 passive)
 - the abilities are:
-- Assassin: Invisibility, Sword, Summon Railgun (passive)
+- Assassin: Invisibility, Alter Mode, Summon Railgun (passive)
 - Mechanic: Heal, Ammo, Summon RocketLauncher (passive)
 - Mage: Speed Boost, Damage up, LightningGun (passive)
 - the controls for the active abilities are e and q respectedly

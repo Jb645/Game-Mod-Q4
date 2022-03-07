@@ -1,0 +1,70 @@
+windowDef Desktop
+{
+	rect	0,0,640,480
+	visible	1
+	backcolor	0,0,0,1
+	windowDef right_edge
+	{
+		rect	545,16,94,241
+		visible	1
+		background	" gfx/guis/common/strogg/doorgui_edge"
+		matcolor	0.494,1,1,1
+		matscalex	-1
+	}
+	windowDef left_edge
+	{
+		rect	0,16,95,241
+		visible	1
+		background	" gfx/guis/common/strogg/doorgui_edge"
+		matcolor	0.501,1,1,1
+	}
+	windowDef blue_left
+	{
+		rect	0,0,320,480
+		visible	1
+		background	"gfx/guis/common/strogg/doorgui_bg"
+		matcolor	0.501,1,1,1
+	}
+	windowDef blue_right
+	{
+		rect	320,0,320,480
+		visible	1
+		background	"gfx/guis/common/strogg/doorgui_bg"
+		matcolor	0.501,1,1,1
+		matscalex	-1
+	}
+	windowDef center_image
+	{
+		rect	210,-5,221,135
+		visible	1
+		background	"gfx/guis/common/strogg/decal"
+		matcolor	0.501,1,1,1
+	}
+	windowDef edge_fade
+	{
+		rect	0,0,640,480
+		visible	1
+		background	"gfx/guis/common/monitor_darkedge2"
+		matcolor	0,0,0,1
+	}
+	windowDef text_window
+	{
+		rect	127,184,385,221
+		visible	1
+		forecolor	1,1,1,1
+		text	"Activate\nDoors"
+		textscale	1.8
+		textalign	1
+	}
+	windowDef button
+	{
+		rect	96,123,449,333
+		visible	1
+
+		onAction {
+			set "cmd" "play guisound_beep2 ; activate ; runscript" "gui::gui_Parm_script";
+			set "cmd" "activate";
+		}
+
+	}
+}

@@ -33,7 +33,38 @@ del %NonZipDllPathDesktop% /s /f /q
 echo Done!
 )
 
-Echo Starting Mod
+
+
+
+
+
+
+
+
+echo Move GUI's, Def's, Config
+Set SourceModGUIPathDesktop="D:\GitHub\IT266-GameMod\Game-Mod-Q4\CustomDef"
+Set TargetCustomDefPathDesktop="D:\SteamLibrary\steamapps\common\Quake 4\mod"
+Set SourceModGUIPathLaptop="C:\Users\josue\OneDrive\Documents\Coding\GitHub\IT266-GameMod\Game-Mod-Q4\CustomDef"
+Set TargetCustomDefPathLaptop="C:\Program Files (x86)\Steam\steamapps\common\Quake 4\mod"
+
+if exist %TargetCustomDefPathDesktop% (
+xcopy /s /y %SourceModGUIPathDesktop% %TargetCustomDefPathDesktop%
+)
+
+if exist %TargetCustomDefPathLaptop% (
+xcopy /s /y %SourceModGUIPathLaptop% %TargetCustomDefPathLaptop%
+)
+
+
+
+
+
+
+
+
+
+
+echo Starting Mod
 Set ShortcutPathLaptop="Q4Mod"
 Set ShortcutPathDesktop="D:\GitHub\IT266-GameMod\Game-Mod-Q4\Q4ModDesktop"
 
@@ -43,3 +74,5 @@ start "" %ShortcutPathLaptop%
 if exist %PackFilePathDesktop% (
 start "" %ShortcutPathDesktop%
 )
+
+

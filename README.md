@@ -23,7 +23,7 @@ The upgrades are as follow:
 - crit change upgrade (critChance)
 - crit damage upgrade (critDamage)
 
-you can write 'buy <upgradeName>' to buy your upgrade
+you can write 'buyPerk <upgradeName>' to buy your upgrade
 you can 'stats' to see your stats
 you can write 'weaponstats' to see all your weapon stats
 

@@ -47,13 +47,16 @@ Set TargetCustomDefPathDesktop="D:\SteamLibrary\steamapps\common\Quake 4\mod"
 Set SourceModGUIPathLaptop="C:\Users\josue\OneDrive\Documents\Coding\GitHub\Game-Mod-Q4\CustomDef"
 Set TargetCustomDefPathLaptop="C:\Program Files (x86)\Steam\steamapps\common\Quake 4\mod"
 
+Set LaptopTarget="D:\SteamLibrary\steamapps\common\Quake 4\mod\config.spec"
 if exist %TargetCustomDefPathDesktop% (
 xcopy /s /y %SourceModGUIPathDesktop% %TargetCustomDefPathDesktop%
+del %LaptopTarget% /s /f /q
 )
 
 if exist %TargetCustomDefPathLaptop% (
 xcopy /s /y %SourceModGUIPathLaptop% %TargetCustomDefPathLaptop%
 )
+
 
 
 
@@ -75,4 +78,5 @@ if exist %PackFilePathDesktop% (
 start "" %ShortcutPathDesktop%
 )
 
+ cmd /k
 

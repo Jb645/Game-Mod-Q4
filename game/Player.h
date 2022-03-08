@@ -283,8 +283,8 @@ protected:
 	int level;
 	idEntity* lastenemy;//testing this
 	//classes
-	enum Classes{None,Assassin, Mechanic, Mage};
-	Classes currentClass = None;
+	
+	
 	char* className = "None";
 	//player weapon upgrades
 	enum WeaponsList {
@@ -311,7 +311,11 @@ protected:
 	bool canUseActive2,isActive2OnCooldown;
 	int currentPowerUp1, currentPowerUp2;
 public:
-
+	enum Classes { None, Assassin, Mechanic, Mage };
+	Classes currentClass = None;
+	Classes GetCurrentClass() {
+		return currentClass;
+	}
 	void increaseXP() {
 		/*if (enemy== lastenemy) return;
 		else lastenemy = enemy;*/
@@ -451,6 +455,7 @@ public:
 				gameLocal.Printf("Ammo\n");
 				currentPowerUp2 = POWERUP_AMMOREGEN;
 				GivePowerUp(currentPowerUp2, activeTime, true);
+				GiveStuffToPlayer(this, "ammo", "");
 				break;
 			case idPlayer::Mage:
 				gameLocal.Printf("Damage Up\n");

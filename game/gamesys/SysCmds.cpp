@@ -27,6 +27,7 @@
 
 
 //MOD BEGIN
+
 //MOD END
 
 
@@ -3105,6 +3106,55 @@ void Cmd_Active2(const idCmdArgs& args) {
 	idPlayer* player = gameLocal.GetLocalPlayer();
 	player->ActiveAbility2();
 }
+
+//=============================
+// PerkShop
+//==============================
+void Cmd_PerkShop(const idCmdArgs& args) {
+	if (args.Argc() > 1) {
+		if (!idStr::Icmp(args.Argv(1), "weapon_hyperblaster")) {
+			
+		}
+		else if (!idStr::Icmp(args.Argv(1),"weapon_grenadelauncher")){
+
+		}
+		else if (!idStr::Icmp(args.Argv(1), "weapon_lightninggun")) {
+
+		}
+		else if (!idStr::Icmp(args.Argv(1), "weapon_machinegun")) {
+
+		}
+		else if (!idStr::Icmp(args.Argv(1), "weapon_nailgun")) {
+
+		}
+		else if (!idStr::Icmp(args.Argv(1), "weapon_railgun")) {
+
+		}
+		else if (!idStr::Icmp(args.Argv(1), "weapon_rocketlauncher")) {
+
+		}
+		else if (!idStr::Icmp(args.Argv(1), "weapon_shotgun")) {
+
+		}
+		else if (!idStr::Icmp(args.Argv(1), "weapon_blaster")) {
+
+		}
+		else {
+			gameLocal.Printf("Invalid Weapon");
+		}
+	}else {
+		gameLocal.Printf("-------------------------\n");
+		gameLocal.Printf("perk Cost: 1\n");
+		gameLocal.Printf("buy <weapon_<weaponName> <upgradename>>\n");
+		gameLocal.Printf("look at Help GUI for the names\n");
+		gameLocal.Printf("-------------------------\n");
+	}
+}
+
+void PerkUpgrade(char* string) {
+	
+}
+
 void idGameLocal::InitConsoleCommands( void ) {
 // RAVEN BEGIN
 // jscott: typeinfo gone - didn't work, it was unfinished
@@ -3298,6 +3348,7 @@ void idGameLocal::InitConsoleCommands( void ) {
 	cmdSystem->AddCommand("xp", Cmd_AddXP, CMD_FL_GAME | CMD_FL_CHEAT, "test if you can bind custom commands");
 	cmdSystem->AddCommand("active1", Cmd_Active1, CMD_FL_GAME | CMD_FL_CHEAT, "test if you can bind custom commands");
 	cmdSystem->AddCommand("active2", Cmd_Active2, CMD_FL_GAME | CMD_FL_CHEAT, "test if you can bind custom commands");
+	cmdSystem->AddCommand("buyPerk", Cmd_PerkShop, CMD_FL_GAME | CMD_FL_CHEAT, "test if you can bind custom commands");
 // MOD END
 }
 

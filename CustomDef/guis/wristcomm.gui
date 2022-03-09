@@ -1207,7 +1207,7 @@ windowDef Desktop
 		rect	10,12,619,73
 		visible	0
 		forecolor	1,1,1,1
-		text	"Console Mod Commands:\nChoose Class: class <className>\nBuy Weapon Upgrade:buy <<weapon_<weaponName>> <WeaponUpgrade>\n"
+		text	"Console Mod Commands:\nChoose Class: class <className>\nBuy Weapon Upgrade:buyPerk <<weapon_<weaponName>> <WeaponUpgrade>\n"
 		textscale	0.3
 		backcolor	0.490,0.490,1,0.278
 		textalignx	8

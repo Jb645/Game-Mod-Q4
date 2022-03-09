@@ -738,7 +738,7 @@ windowDef Desktop
 	windowDef p_armor
 	{
 		rect	0,0,640,480
-		visible	("gui::player_armor" > 0 && "gui::mp" == 0 )
+		visible	1
 		windowDef armor_backbar
 		{
 			rect	326,420,125,59
@@ -752,7 +752,7 @@ windowDef Desktop
 			rect	326,420,125,59
 			visible	1
 			background	"gfx/guis/hud/arbar"
-			matcolor	0.501,1,1,0.356
+			matcolor	0.498,1,1,0.352
 			shear	0,-.22
 		}
 		windowDef p_armor_val
@@ -765,7 +765,7 @@ windowDef Desktop
 				rect	-120 + ( "gui::player_armorpct" * 115 ),0,125,59
 				visible	1
 				background	"gfx/guis/hud/arbar"
-				matcolor	0.698,0.811,0.427,0.349
+				matcolor	0,1,1,0.345
 				shear	0,-.22
 			}
 		}
@@ -798,10 +798,18 @@ windowDef Desktop
 		windowDef icon_armorvest
 		{
 			rect	424,458,16,16
-			visible	1
+			visible	0
 			background	"gfx/guis/hud/icons/item_armor"
-			matcolor	0.658,0.639,0.376,0.6
+			matcolor	0,1,1,0.6
 		}
+	}
+	windowDef armor_XPBar
+	{
+		rect	420,455,37,20
+		visible	1
+		forecolor	0,1,1,1
+		text	"XP"
+		textscale	0.3
 	}
 	windowDef p_ammo_mp
 	{
@@ -963,12 +971,12 @@ windowDef Desktop
 			rect	326,420,125,59
 			visible	1
 			background	"gfx/guis/hud/arbar"
-			matcolor	0.698,0.811,0.427,0.2
+			matcolor	0,1,1,0.2
 			shear	0,-.22
 		}
 		windowDef p_armor_val_mp
 		{
-			rect	446 - ( "gui::player_armorpct" * 115 ),420,115,59
+			rect	446,420,115,59
 			visible	1
 			shear	0,-.22
 			windowDef armor_val_mp
@@ -1014,7 +1022,7 @@ windowDef Desktop
 		windowDef icon_armorvest_mp
 		{
 			rect	424,458,16,16
-			visible	1
+			visible	0
 			background	"gfx/guis/hud/icons/item_armor"
 			matcolor	0.980,0.168,0.0196,0.8
 		}
